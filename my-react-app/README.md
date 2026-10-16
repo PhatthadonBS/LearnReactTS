@@ -1,75 +1,51 @@
-# React + TypeScript + Vite
+# 🚀 my-react-app (Modern React + TypeScript Lab)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Practice workspace for **Modern React (Latest) + TypeScript (`react-ts`) + Vite**  
+> Mentorship project for **Diw (CS Year 4)**  
+> Main Practice Root Documentation: [../README.md](../README.md)  
+> Obsidian Curriculum: `Book of Dogskins/Lesson/React/roadmap.md`
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📁 Directory Structure & Convention
 
-## React Compiler
+โปรเจกต์นี้ใช้โครงสร้าง **Modular Architecture** เพื่อเก็บแบบฝึกหัดย่อยและโปรเจกต์ท้ายบทแยกกันอย่างเป็นระเบียบ:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```text
+src/
+├── assets/                       # Image and media assets
+├── modules/                      # Modular curriculum workspaces
+│   ├── module-1-fundamentals/    # Module 1
+│   │   ├── exercises/            # Topic micro-challenges
+│   │   │   └── ex-1.1.1-vite-setup/
+│   │   └── mini-project/         # End-of-module capstone project
+│   ├── module-2-advanced-react/  # Module 2
+│   └── ...
+├── App.tsx                       # Active component switcher/showcase
+├── main.tsx                      # Application entry point
+├── index.css                     # Global styles
+└── App.css                       # App styles
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ⚡ Available Scripts
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+In the `my-react-app` directory, you can run:
 
-```
+| Command | Description | Purpose |
+|---|---|---|
+| `npm run dev` | Runs the app in development mode with HMR (`http://localhost:5173`) | Active coding & preview |
+| `npm run lint` | Runs ESLint over all `.ts` and `.tsx` files | Code quality & Hooks verification |
+| `npx tsc -b` | Checks TypeScript compilation without emitting output | Strict type contract verification |
+| `npm run build` | Compiles and bundles the application to `dist/` | Production build validation |
+| `npm run preview` | Locally preview the production build in `dist/` | Production sanity check |
+
+---
+
+## 🎯 How to Showcase Current Exercise
+
+เมื่อทำแบบฝึกหัดย่อยเสร็จใน `src/modules/module-X-.../exercises/ex-...`:
+1. เปิดไฟล์ `src/App.tsx`
+2. Import คอมโพเนนต์ของหัวข้อนั้นเข้ามาแสดงผล
+3. รัน `npm run lint` และ `npx tsc -b` เพื่อตรวจทานความถูกต้องก่อนส่งตรวจ
