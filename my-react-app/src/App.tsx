@@ -4,10 +4,11 @@ import RenderPipelineInspector from "./modules/module-1-fundamentals/exercises/e
 import TsxCompilerProbe from "./modules/module-1-fundamentals/exercises/ex-1.1.3-tsx-expressions/TsxCompilerProbe";
 import ClusterNodePropsLab from "./modules/module-1-fundamentals/exercises/ex-1.1.4-typed-props/ClusterNodePropsLab";
 import FirewallRuleGate from "./modules/module-1-fundamentals/exercises/ex-1.1.5-conditional-ui/FirewallRuleGate";
+import DatabaseQueryLogList from "./modules/module-1-fundamentals/exercises/ex-1.1.6-list-rendering/DatabaseQueryLogList";
 
 function App() {
   return (
-    // True ✅ [Workshop 1.1.2 - 1.1.5]: โครงสร้าง <main> และลำดับการวาง Component ถูกต้องครบถ้วน!
+    // True ✅ [Workshop 1.1.2 - 1.1.6]: โครงสร้าง <main> และลำดับการวาง Component ถูกต้องครบถ้วน!
     <main className="w-full h-full bg-slate-100 p-20">
       <h1>React Mentorship Lab</h1>
       <SystemBootCard />
@@ -15,6 +16,7 @@ function App() {
       <TsxCompilerProbe />
       <ClusterNodePropsLab />
       <FirewallRuleGate />
+      <DatabaseQueryLogList />
     </main>
   );
 }

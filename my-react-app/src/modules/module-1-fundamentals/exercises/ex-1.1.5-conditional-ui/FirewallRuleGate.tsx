@@ -1,7 +1,7 @@
 // ============================================================================
 // 🔍 STRICT LIVE INLINE REVIEW (Workshop 1.1.5 — FirewallRuleGate.tsx)
 // - Req 1 (Type Alias & Props Interface Contract): True ✅ (ประกาศ RuleAction และ FirewallRuleCardProps ถูกต้อง 100%)
-// - Req 2 (Early Return Guard Clause & Default Port): False ❌ (Guard Clause 'if (!isActive) return null;' ถูกต้องเป๊ะ แต่ค่าเริ่มต้นของ port พิมพ์เป็น 433 แทนที่จะเป็น 443 ตามสเปก!)
+// - Req 2 (Early Return Guard Clause & Default Port): True ✅ (แก้ไขค่าเริ่มต้น port = 443 และทำ Guard Clause 'if (!isActive) return null;' ถูกต้อง 100%)
 // - Req 3 (Conditional Rendering & Zero-Trap Protection): True ✅ (ใช้ Ternary สลับ Policy และใช้ 'blockedPackets > 0 &&' ป้องกันเลข 0 โผล่ได้อย่างยอดเยี่ยม!)
 // - Req 4 (Main Component with 3 Test Scenarios): True ✅ (ส่ง Props ทั้ง 3 ใบครบถ้วนถูกต้อง)
 // - Req 5 (Integration in App.tsx & Zero Lint/Type Errors): True ✅ (ผ่าน npm run lint และ npx tsc -b 100%)
@@ -24,8 +24,7 @@ function FirewallRuleCard({
   isActive,
   action,
   blockedPackets,
-  // False ❌ [Req 2 - Default Value]: สเปกกำหนดค่าเริ่มต้นของพอร์ต HTTPS มาตรฐานคือ 443 (ในโค้ดพิมพ์เป็น 433 ครับ!)
-  // แก้เป็น: port = 443,
+  // True ✅ [Req 2 - Default Value]: กำหนดค่าเริ่มต้น port = 443 ตรงสเปก 100%
   port = 443,
 }: FirewallRuleCardProps) {
   // True ✅ [Req 2 - Guard Clause]: ดัก Early Return คืนค่า null เมื่อกฎไม่ได้เปิดใช้งาน ถูกต้องและคลีนมาก!
