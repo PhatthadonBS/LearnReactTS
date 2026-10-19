@@ -1,8 +1,8 @@
 // ============================================================================
-// 🔍 STRICT LIVE INLINE REVIEW (Workshop 1.1.6 — DatabaseQueryLogList.tsx)
+// 🔍 STRICT LIVE INLINE REVIEW (Workshop 1.1.6 — DatabaseQueryLogList.tsx) [UPDATED: 100% PASSED ✅]
 // - Req 1 (Data Model Interface & Static Array): True ✅ (ประกาศ QueryLogEntry และ QUERY_LOGS ถูกต้อง 100%)
-// - Req 2 (Child List Item Component & Props Contract): False ❌ (วาง key={entry.queryId} ผิดที่! ห้ามวางที่ <li> ข้างในลูก และลืมเว้นวรรคหลัง ':' ใน <strong>)
-// - Req 3 (Array Filtering & Keyed List Rendering): False ❌ (1. ใน <h2> ใช้ slowQueries.length แทนที่จะเป็น QUERY_LOGS.length, 2. วาง <h3> ตัวที่สองไว้ข้างใน <ul> ตัวแรก, 3. ลืมใส่ key={item.queryId} ที่ <QueryLogItem /> ใน .map() ทั้ง 2 จุด)
+// - Req 2 (Child List Item Component & Props Contract): True ✅ (แก้ไขโดยลบ key ออกจาก <li> และเติมเว้นวรรคหลัง ':' ใน <strong> เรียบร้อยแล้ว!)
+// - Req 3 (Array Filtering & Keyed List Rendering): True ✅ (แก้ไขใช้ QUERY_LOGS.length ใน <h2>, ย้าย <h3> ออกนอก <ul>, และใส่ key={item.queryId} ที่ <QueryLogItem /> ครบทั้ง 2 จุดแล้ว!)
 // - Req 4 (Integration in App.tsx & Zero Lint/Type Errors): True ✅ (ผ่าน npm run lint และ npx tsc -b 100%)
 // ============================================================================
 
@@ -47,17 +47,13 @@ interface QueryLogItemProps {
   entry: QueryLogEntry;
 }
 
+// True ✅ [Req 2 - Part 2]: ฟังก์ชันลูกสะอาด คลีน ไม่มี key ปะปนใน <li> และรูปแบบข้อความตรงสเปก 100%
 function QueryLogItem({ entry }: QueryLogItemProps) {
-  // False ❌ [Req 2 - Misplaced Key]: ห้ามใส่ key={entry.queryId} ที่แท็ก <li> ข้างในฟังก์ชันลูก!
-  // เพราะคนที่เรียก .map() คือ DatabaseQueryLogList ดังนั้นต้องย้าย key ไปใส่ที่ <QueryLogItem key={item.queryId} entry={item} /> ตอนทำ .map() เสมอ!
   return (
     <li>
-      {/* False ❌ [Req 2 - Missing Space]: หลังเครื่องหมายโคลอน ':' ต้องมีเว้นวรรค 1 เคาะตามสเปก "[q-101]: SELECT ..." */}
-      {/* แก้เป็น: <strong>[{entry.queryId}]: {entry.sqlCommand}</strong> */}
       <strong>
         [{entry.queryId}]: {entry.sqlCommand}
       </strong>
-      {/* True ✅ [Req 2 - Span Format]: รูปแบบ " - Time: 4ms" ถูกต้องเป๊ะ */}
       <span> - Time: {entry.executionTimeMs}ms</span>
     </li>
   );
@@ -71,24 +67,22 @@ export default function DatabaseQueryLogList() {
 
   return (
     <section>
-      {/* False ❌ [Req 3 - Wrong Array Length]: สเปกกำหนดให้แสดงจำนวนทั้งหมดใน QUERY_LOGS (Total 4 Queries) */}
-      {/* แต่ในโค้ดใช้ slowQueries.length จึงแสดงเป็น Total 2 Queries! แก้เป็น: {QUERY_LOGS.length} */}
+      {/* True ✅ [Req 3 - Part 2]: แสดงจำนวนทั้งหมดด้วย QUERY_LOGS.length ถูกต้อง */}
       <h2>
         [PostgreSQL Query Inspector]: Total {QUERY_LOGS.length} Queries
       </h2>
       <h3>All Executed Queries: </h3>
       <ul>
         {QUERY_LOGS.map((item) => (
-          // False ❌ [Req 3 - Missing Key in .map()]: ต้องใส่ key={item.queryId} ที่แท็ก <QueryLogItem /> ตรงนี้!
+          // True ✅ [Req 3 - Key Placement]: ระบุ key={item.queryId} ที่ <QueryLogItem /> ใน .map() ถูกต้องตามกฎ Fiber Reconciliation
           <QueryLogItem entry={item} key={item.queryId} />
         ))}
-        {/* False ❌ [Req 3 - Invalid HTML Nesting]: เผลอวาง <h3> ไว้ข้างในแท็ก <ul> ตัวแรก! */}
-        {/* ต้องย้ายบรรทัด <h3>Slow Queries Detected...</h3> ออกไปวางนอกแท็กปิด </ul> ตัวแรกครับ */}
       </ul>
-        <h3>Slow Queries Detected ({slowQueries.length}):</h3>
+      {/* True ✅ [Req 3 - Semantic HTML]: วาง <h3> ไว้นอก <ul> ถูกต้องตามมาตรฐาน W3C */}
+      <h3>Slow Queries Detected ({slowQueries.length}):</h3>
       <ul>
         {slowQueries.map((item) => (
-          // False ❌ [Req 3 - Missing Key in .map()]: ต้องใส่ key={item.queryId} ที่แท็ก <QueryLogItem /> ตรงนี้ด้วย!
+          // True ✅ [Req 3 - Key Placement]: ระบุ key={item.queryId} ที่ <QueryLogItem /> ใน .map() ก้อนที่สองถูกต้อง
           <QueryLogItem entry={item} key={item.queryId} />
         ))}
       </ul>
