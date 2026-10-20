@@ -1,9 +1,9 @@
 // ============================================================================
-// 🔍 STRICT LIVE INLINE REVIEW (Workshop 1.1.7 — PureMetricsDashboard.tsx)
+// 🔍 STRICT LIVE INLINE REVIEW (Workshop 1.1.7 — PureMetricsDashboard.tsx) [UPDATED: 100% PASSED ✅]
 // - Req 1 (Data Model Interface & Immutable Static Array): True ✅ (ประกาศ ServiceMetric และ INITIAL_METRICS ถูกต้อง และไม่ใช้ let หรือแก้ไขค่าต้นฉบับ)
 // - Req 2 (Pure Sub-Component #1 — DashboardSummaryHeader): True ✅ (แยก Component ส่วนหัวและรับ Props ตรงตามสัญญา 100%)
-// - Req 3 (Pure Sub-Component #2 — ServiceRankRow): False ❌ (สะกดชื่อพร็อพใน ServiceRankRowProps ผิดจาก 'metric' เป็น 'matric')
-// - Req 4 (Main Component with Non-Mutating Sort): False ❌ (1. ใน <h3> ลืมเครื่องหมายโคลอน ':' ปิดท้าย, 2. ส่งพร็อพชื่อ matric={item} แทนที่จะเป็น metric={item})
+// - Req 3 (Pure Sub-Component #2 — ServiceRankRow): True ✅ (แก้ไขตัวสะกดพร็อพเป็น 'metric' ตรงตามสัญญา 100% แล้ว!)
+// - Req 4 (Main Component with Non-Mutating Sort): True ✅ (แก้ไขเติม ':' ปิดท้ายใน <h3> และส่งพร็อพ metric={item} ครบถ้วนถูกต้องแล้ว!)
 // - Req 5 (Integration in App.tsx & Zero Lint/Type Errors): True ✅ (ผ่าน npm run lint และ npx tsc -b 100%)
 // ============================================================================
 
@@ -40,17 +40,15 @@ function DashboardSummaryHeader({
   );
 }
 
+// True ✅ [Req 3 - Part 1]: ประกาศ ServiceRankRowProps ใช้ชื่อคีย์ metric: ServiceMetric ถูกต้อง
 interface ServiceRankRowProps {
   rank: number;
-  // False ❌ [Req 3 - Prop Contract Typo]: สเปกกำหนดให้ชื่อคีย์คือ 'metric: ServiceMetric' (สะกดด้วยตัว e)
-  // แต่ในโค้ดสะกดเป็น 'matric' (ตัว a) แก้เป็น: metric: ServiceMetric;
   metric: ServiceMetric;
 }
 
-// False ❌ [Req 3 - Prop Destructuring Typo]: เปลี่ยนจาก { rank, matric } เป็น { rank, metric } ให้ตรงตามสัญญา Interface
+// True ✅ [Req 3 - Part 2]: รับ Props { rank, metric } และแสดงผล <li> ตรงสเปก 100%
 function ServiceRankRow({ rank, metric }: ServiceRankRowProps) {
   return (
-    // True ✅ [Req 3 - Output Format]: รูปแบบข้อความ "#{rank} {metric.serviceName} - {metric.memoryMb}MB" ถูกต้องและคลีนมาก (ไม่มี key ติดมาใน <li> แล้ว เยี่ยมมาก!)
     <li>
       #{rank} {metric.serviceName} - {metric.memoryMb}MB
     </li>
@@ -70,13 +68,11 @@ export default function PureMetricsDashboard() {
         clusterName="Production Microservices"
         totalServices={INITIAL_METRICS.length}
       />
-      {/* False ❌ [Req 4 - Missing Trailing Colon]: สเปกกำหนดให้มีเครื่องหมาย ':' ปิดท้ายข้อความใน <h3> */}
-      {/* แก้เป็น: <h3>Memory Leaderboard (High to Low):</h3> */}
+      {/* True ✅ [Req 4 - Subheading]: ข้อความใน <h3> มี ':' ปิดท้ายตรงตามสเปก 100% */}
       <h3>Memory Leaderboard (High to Low):</h3>
       <ol>
         {rankedByMemory.map((item, index) => (
-          // True ✅ [Req 4 - Key & Rank Calculation]: วาง key={item.serviceId} ที่ <ServiceRankRow /> และคำนวณ rank={index + 1} ถูกต้องเป๊ะ!
-          // False ❌ [Req 4 - Prop Name Typo]: เมื่อแก้ ServiceRankRowProps แล้ว ให้เปลี่ยนชื่อพร็อพตรงนี้จาก matric={item} เป็น metric={item} ด้วยครับ
+          // True ✅ [Req 4 - Key & Props]: วาง key={item.serviceId}, คำนวณ rank={index + 1}, และส่ง metric={item} ถูกต้องครบถ้วน!
           <ServiceRankRow
             rank={index + 1}
             metric={item}
