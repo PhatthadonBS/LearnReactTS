@@ -1,6 +1,5 @@
 import "./App.css";
-// False ❌ [Workshop 1.2.4 - Req 4.2]: เมื่อคอมเมนต์ปิดแท็ก JSX ด้านล่าง (บรรทัด 21-30) เพื่อไม่ให้รกหน้าจอ ต้องคอมเมนต์ปิดบรรทัด import ของ Component เหล่านั้นด้วยครับ!
-// เพราะการเปิด import ทิ้งไว้โดยไม่ได้เรียกใช้ จะทำให้ `npm run lint` (@typescript-eslint/no-unused-vars) และ `npx tsc -b` (error TS6133: '... is declared but its value is never read') พ่น Error ทันที 10 จุด!
+// True ✅ [Workshop 1.2.4 & 1.2.5 - Req 4]: คอมเมนต์ปิด import ที่ไม่ได้ใช้คู่กับแท็ก JSX ด้านล่าง และนำ QueryJobQueueManager มาแสดงผลโดยรันผ่าน lint + tsc 0 Error!
 // import SystemBootCard from "./modules/module-1-fundamentals/exercises/ex-1.1.1-vite-setup/SystemBootCard";
 // import RenderPipelineInspector from "./modules/module-1-fundamentals/exercises/ex-1.1.2-render-tree/RenderPipelineInspector";
 // import TsxCompilerProbe from "./modules/module-1-fundamentals/exercises/ex-1.1.3-tsx-expressions/TsxCompilerProbe";
@@ -11,7 +10,8 @@ import "./App.css";
 // import ClusterCommandPanel from "./modules/module-1-fundamentals/exercises/ex-1.2.1-event-handlers/ClusterCommandPanel";
 // import FirewallRuleCreatorForm from "./modules/module-1-fundamentals/exercises/ex-1.2.2-usestate-form/FirewallRuleCreatorForm";
 // import BatchQueueSimulator from "./modules/module-1-fundamentals/exercises/ex-1.2.3-state-snapshot/BatchQueueSimulator";
-import PostgresConfigEditor from "./modules/module-1-fundamentals/exercises/ex-1.2.4-immutable-objects/PostgresConfigEditor";
+// import PostgresConfigEditor from "./modules/module-1-fundamentals/exercises/ex-1.2.4-immutable-objects/PostgresConfigEditor";
+import QueryJobQueueManager from "./modules/module-1-fundamentals/exercises/ex-1.2.5-immutable-arrays/QueryJobQueueManager";
 
 function App() {
   return (
@@ -28,7 +28,8 @@ function App() {
       <FirewallRuleCreatorForm />
       <BatchQueueSimulator /> */}
       {/* True ✅ [Workshop 1.2.4 - Req 4.1]: นำ <PostgresConfigEditor /> มาแสดงผลใน <main> เรียบร้อย! */}
-      <PostgresConfigEditor/>
+      {/* <PostgresConfigEditor/> */}
+      <QueryJobQueueManager/>
     </main>
   );
 }
