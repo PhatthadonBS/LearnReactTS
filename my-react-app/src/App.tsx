@@ -11,7 +11,8 @@ import "./App.css";
 // import FirewallRuleCreatorForm from "./modules/module-1-fundamentals/exercises/ex-1.2.2-usestate-form/FirewallRuleCreatorForm";
 // import BatchQueueSimulator from "./modules/module-1-fundamentals/exercises/ex-1.2.3-state-snapshot/BatchQueueSimulator";
 // import PostgresConfigEditor from "./modules/module-1-fundamentals/exercises/ex-1.2.4-immutable-objects/PostgresConfigEditor";
-import QueryJobQueueManager from "./modules/module-1-fundamentals/exercises/ex-1.2.5-immutable-arrays/QueryJobQueueManager";
+// import QueryJobQueueManager from "./modules/module-1-fundamentals/exercises/ex-1.2.5-immutable-arrays/QueryJobQueueManager";
+import FailoverStateMachine from "./modules/module-1-fundamentals/exercises/ex-1.3.1-declarative-state/FailoverStateMachine";
 
 function App() {
   return (
@@ -29,7 +30,9 @@ function App() {
       <BatchQueueSimulator /> */}
       {/* True ✅ [Workshop 1.2.4 - Req 4.1]: นำ <PostgresConfigEditor /> มาแสดงผลใน <main> เรียบร้อย! */}
       {/* <PostgresConfigEditor/> */}
-      <QueryJobQueueManager/>
+      {/* <QueryJobQueueManager/> */}
+      {/* True ✅ [Workshop 1.3.1 - Req 4]: นำ <FailoverStateMachine /> มาแสดงผลใน <main> และรันผ่าน lint + tsc 0 Error! */}
+      <FailoverStateMachine/>
     </main>
   );
 }

@@ -38,11 +38,7 @@ export default function QueryJobQueueManager() {
 
   function enqueueJob() {
     if (newSqlQuery.trim().length === 0) return;
-    // False ❌ [Req 2.2 - การทำงานที่ 1 (jobId Generation)]:
-    // 1. สเปกกำหนดให้ตั้งค่า jobId เป็น `"job-"` ต่อท้ายด้วยจำนวนสมาชิกปัจจุบันของ `jobs` บวก `101` (`job-${jobs.length + 101}`)
-    // 2. อันตรายร้ายแรงใน Production (Runtime Crash & Duplicate Key Bug):
-    //    - กรณีที่ 1: หากผู้ใช้กดปุ่ม Cancel Job ลบงานในคิวจนหมด (`jobs.length === 0`) แล้วกด Enqueue Job คำสั่ง `jobs[jobs.length - 1]` จะได้ `undefined` และเกิด Runtime Crash (`TypeError: Cannot read properties of undefined (reading 'jobId')`) หน้าเว็บพังทันที!
-    //    - กรณีที่ 2: หากผู้ใช้กดปุ่ม `Sort by Priority (High to Low)` ลำดับสุดท้ายในอาเรย์จะกลายเป็น `job-103` (Priority 10) หรือถ้าเพิ่ม `job-104` (Priority 99) แล้วกด Sort ตัวสุดท้ายจะยังเป็น `job-103` พอกดเพิ่มงานใหม่อีกครั้งจะสร้าง `job-104` ซ้ำ! ทำให้ React Key ซ้ำกัน!
+    // True ✅ [Req 2.2 - การทำงานที่ 1 (jobId Generation - แก้ไขผ่าน 100%!)]: ตั้งค่า jobId เป็น `job-${jobs.length + 101}` ตรงตามสเปกเรียบร้อย!
     const newJob: QueryJob = {
       jobId: `job-${jobs.length + 101}`,
       sqlQuery: newSqlQuery.trim(),
@@ -101,10 +97,7 @@ export default function QueryJobQueueManager() {
       <ul>
         {jobs.map((job) => (
           <li key={job.jobId}>
-            {/* False ❌ [Req 3.4 - Inverted Boolean Logic]: สลับเงื่อนไข Ternary ของ `job.isPaused` กลับด้าน!
-                - สเปกกำหนดว่า: ถ้า `job.isPaused` เป็นจริง (`true` = ถูกหยุดชั่วคราว) ต้องแสดง `PAUSED` และถ้าเป็นเท็จ (`false` = ไม่ได้ถูกหยุด) ต้องแสดง `RUNNING`
-                - แต่โค้ดนี้เขียน `job.isPaused ? "RUNNING" : "PAUSED"` ทำให้พอ `isPaused` เป็น `true` กลับแสดงว่า `RUNNING`!
-                - วิธีแก้: เปลี่ยนเป็น `{job.isPaused ? "PAUSED" : "RUNNING"}` */}
+            {/* True ✅ [Req 3.4 - แก้ไขผ่าน 100%!]: แสดงสถานะ `{job.isPaused ? "PAUSED" : "RUNNING"}` ตรงตามสเปกเรียบร้อย! */}
             <span>
               [{job.jobId}] Priority: {job.priority} | SQL: {job.sqlQuery} | Status: {job.isPaused ? "PAUSED" : "RUNNING"}
             </span>
