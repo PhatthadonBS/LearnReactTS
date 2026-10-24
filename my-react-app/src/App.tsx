@@ -16,7 +16,7 @@ import FailoverStateMachine from "./modules/module-1-fundamentals/exercises/ex-1
 
 function App() {
   return (
-    <main className="w-full h-full bg-slate-100 p-20">
+    <main className="w-full h-[100vh] bg-slate-500 p-20">
       <h1>React Mentorship Lab</h1>
       {/* <SystemBootCard />
       <RenderPipelineInspector />
