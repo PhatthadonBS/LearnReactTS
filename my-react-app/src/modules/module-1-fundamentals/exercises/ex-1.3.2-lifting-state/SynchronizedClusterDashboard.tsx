@@ -73,9 +73,7 @@ function PoolNodeAccordionRow({
 }: PoolNodeAccordionRowProps) {
   return (
     <li>
-      {/* False ❌ [Req 3.2 - จุดที่ 1 (ข้อความใน <span> เกินสเปก)]:
-          - สเปกกำหนดให้แสดงเฉพาะ: `Node: {node.nodeId} | Queries: {node.activeQueries}` (เช่น `Node: pg-pool-sg-01 | Queries: 35`)
-          - แต่บรรทัดที่ 80 มีคำว่า `activeQueries: ` เกินมาข้างหน้า! ต้องลบคำว่า `activeQueries: ` ด้านหน้าออกครับ */}
+      {/* True ✅ [Req 3.2 - จุดที่ 1 (แก้ไขผ่าน 100%!)]: ข้อความใน <span> ตรงตามสเปกเรียบร้อย! */}
       <span>
         Node: {node.nodeId} | Queries: {node.activeQueries}
       </span>
@@ -83,10 +81,7 @@ function PoolNodeAccordionRow({
       <button type="button" onClick={() => onToggleExpand(node.nodeId)}>
         {isExpanded ? "Hide Details" : "Inspect Node"}
       </button>
-      {/* False ❌ [Req 3.2 - จุดที่ 2 (ปุ่ม Simulate +10 Queries อยู่นอก <div> ที่เช็ก isExpanded)]:
-          - สเปกกำหนดว่า เฉพาะเมื่อ `isExpanded` เป็นจริง (`true`) เท่านั้น ให้วาด `<div>` ซึ่งภายใน `<div>` นั้นมีทั้ง `<p>` และปุ่ม `<button type="button">Simulate +10 Queries</button>`
-          - แต่ในโค้ดนี้ ปุ่ม `Simulate +10 Queries` (บรรทัดที่ 95) ถูกวางไว้นอก `{isExpanded && (<div>...</div>)}` ทำให้แม้โหนดจะพับปิดอยู่ ปุ่ม `Simulate +10 Queries` ก็ยังโผล่โชว์ตลอดเวลา!
-          - วิธีแก้: ย้ายปุ่ม `<button type="button" onClick={() => onAddQueries(node.nodeId)}>Simulate +10 Queries</button>` เข้าไปไว้ข้างใน `<div>` ต่อท้าย `<p>` ครับ! */}
+      {/* True ✅ [Req 3.2 - จุดที่ 2 (แก้ไขผ่าน 100%!)]: ย้ายปุ่ม Simulate +10 Queries เข้ามาอยู่ใน <div> ภายใต้เงื่อนไข isExpanded เรียบร้อย! */}
       {isExpanded && (
         <div>
           <p>Region: {node.region} | Status: SYNCHRONIZED</p>
@@ -107,10 +102,7 @@ export default function SynchronizedClusterDashboard(){
     const selectedRegionFiltered = nodes.filter((r) => r.region === selectedRegion || selectedRegion === "ALL");
     const activeQueries = selectedRegionFiltered.reduce((sum, node) => sum + node.activeQueries, 0);
 
-    // False ❌ [Req 4.3 - ฟังก์ชันสลับการกางเปิด/พับปิด Accordion ไม่ยอมพับปิดเป็น null]:
-    // - สเปกกำหนดว่า: "หากโหนดนั้นกำลังกางเปิดอยู่แล้วให้สั่งพับปิด (ไม่มีโหนดใดเปิดอยู่ / null) แต่หากโหนดนั้นยังไม่ได้เปิดอยู่ ให้สั่งกางเปิดโหนดนั้น"
-    // - แต่โค้ดนี้เขียนแค่ `setExpandedNodeId(nodeId)` อย่างเดียว! ทำให้เมื่อโหนดกางเปิดอยู่ แล้วผู้ใช้กดปุ่ม `Hide Details` มันจะเซ็ตค่าเป็น `nodeId` ตัวเดิมซ้ำ (กด `Hide Details` แล้วไม่ยอมหุบปิด!)
-    // - วิธีแก้: เช็กว่าถ้า `expandedNodeId === nodeId` (หรือใช้ `prevId => prevId === nodeId ? null : nodeId`) ให้เปลี่ยนเป็น `null` เพื่อพับปิดครับ!
+    // True ✅ [Req 4.3 - ฟังก์ชันสลับการกางเปิด/พับปิด Accordion (แก้ไขผ่าน 100%!)]: สลับค่าระหว่าง nodeId และ null ได้อย่างถูกต้อง!
     function handleToggleExpanded(nodeId: string){
         setExpandedNodeId(prevId => prevId === nodeId ? null : nodeId);
 

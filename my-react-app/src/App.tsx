@@ -13,7 +13,8 @@ import "./App.css";
 // import PostgresConfigEditor from "./modules/module-1-fundamentals/exercises/ex-1.2.4-immutable-objects/PostgresConfigEditor";
 // import QueryJobQueueManager from "./modules/module-1-fundamentals/exercises/ex-1.2.5-immutable-arrays/QueryJobQueueManager";
 // import FailoverStateMachine from "./modules/module-1-fundamentals/exercises/ex-1.3.1-declarative-state/FailoverStateMachine";
-import SynchronizedClusterDashboard from "./modules/module-1-fundamentals/exercises/ex-1.3.2-lifting-state/SynchronizedClusterDashboard";
+// import SynchronizedClusterDashboard from "./modules/module-1-fundamentals/exercises/ex-1.3.2-lifting-state/SynchronizedClusterDashboard";
+import ClusterPoolReducerManager from "./modules/module-1-fundamentals/exercises/ex-1.3.3-usereducer/ClusterPoolReducerManager";
 
 function App() {
   return (
@@ -35,7 +36,9 @@ function App() {
       {/* True ✅ [Workshop 1.3.1 - Req 4]: นำ <FailoverStateMachine /> มาแสดงผลใน <main> และรันผ่าน lint + tsc 0 Error! */}
       {/* <FailoverStateMachine/> */}
       {/* True ✅ [Workshop 1.3.2 - Req 5]: นำ <SynchronizedClusterDashboard /> มาแสดงผลใน <main> และรันผ่าน lint + tsc 0 Error! */}
-      <SynchronizedClusterDashboard/>
+      {/* <SynchronizedClusterDashboard/> */}
+      {/* True ✅ [Workshop 1.3.3 - Req 4]: นำ <ClusterPoolReducerManager /> มาแสดงผลใน <main> และรันผ่าน lint + tsc 0 Error! */}
+      <ClusterPoolReducerManager/>
     </main>
   );
 }
