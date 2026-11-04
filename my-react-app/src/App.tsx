@@ -14,9 +14,10 @@ import "./App.css";
 // import QueryJobQueueManager from "./modules/module-1-fundamentals/exercises/ex-1.2.5-immutable-arrays/QueryJobQueueManager";
 // import FailoverStateMachine from "./modules/module-1-fundamentals/exercises/ex-1.3.1-declarative-state/FailoverStateMachine";
 // import SynchronizedClusterDashboard from "./modules/module-1-fundamentals/exercises/ex-1.3.2-lifting-state/SynchronizedClusterDashboard";
-// False ❌ [Workshop 1.3.4 - Req 4.2]: ลืมคอมเมนต์ปิดบรรทัด `import ClusterPoolReducerManager` เมื่อคอมเมนต์ปิด `<ClusterPoolReducerManager />` ด้านล่าง ทำให้ติด Unused Import Error!
-import ClusterPoolReducerManager from "./modules/module-1-fundamentals/exercises/ex-1.3.3-usereducer/ClusterPoolReducerManager";
-import ImmerReplicationTreeEditor from "./modules/module-1-fundamentals/exercises/ex-1.3.4-immer-state/ImmerReplicationTreeEditor";
+// True ✅ [Workshop 1.3.4 & 1.3.5 - Req 4/5]: คอมเมนต์ปิด import ที่ไม่ได้ใช้คู่กับแท็กด้านล่าง และรันผ่าน lint + tsc 0 Error!
+// import ClusterPoolReducerManager from "./modules/module-1-fundamentals/exercises/ex-1.3.3-usereducer/ClusterPoolReducerManager";
+// import ImmerReplicationTreeEditor from "./modules/module-1-fundamentals/exercises/ex-1.3.4-immer-state/ImmerReplicationTreeEditor";
+import ClusterSecurityContextLab from "./modules/module-1-fundamentals/exercises/ex-1.3.5-context-api/ClusterSecurityContextLab";
 
 function App() {
   return (
@@ -41,7 +42,8 @@ function App() {
       {/* <SynchronizedClusterDashboard/> */}
       {/* True ✅ [Workshop 1.3.3 - Req 4]: นำ <ClusterPoolReducerManager /> มาแสดงผลใน <main> และรันผ่าน lint + tsc 0 Error! */}
       {/* <ClusterPoolReducerManager/> */}
-      <ImmerReplicationTreeEditor/>
+      {/* <ImmerReplicationTreeEditor/> */}
+      <ClusterSecurityContextLab/>
     </main>
   );
 }
