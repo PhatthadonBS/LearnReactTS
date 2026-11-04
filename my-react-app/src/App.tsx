@@ -14,7 +14,9 @@ import "./App.css";
 // import QueryJobQueueManager from "./modules/module-1-fundamentals/exercises/ex-1.2.5-immutable-arrays/QueryJobQueueManager";
 // import FailoverStateMachine from "./modules/module-1-fundamentals/exercises/ex-1.3.1-declarative-state/FailoverStateMachine";
 // import SynchronizedClusterDashboard from "./modules/module-1-fundamentals/exercises/ex-1.3.2-lifting-state/SynchronizedClusterDashboard";
+// False ❌ [Workshop 1.3.4 - Req 4.2]: ลืมคอมเมนต์ปิดบรรทัด `import ClusterPoolReducerManager` เมื่อคอมเมนต์ปิด `<ClusterPoolReducerManager />` ด้านล่าง ทำให้ติด Unused Import Error!
 import ClusterPoolReducerManager from "./modules/module-1-fundamentals/exercises/ex-1.3.3-usereducer/ClusterPoolReducerManager";
+import ImmerReplicationTreeEditor from "./modules/module-1-fundamentals/exercises/ex-1.3.4-immer-state/ImmerReplicationTreeEditor";
 
 function App() {
   return (
@@ -38,7 +40,8 @@ function App() {
       {/* True ✅ [Workshop 1.3.2 - Req 5]: นำ <SynchronizedClusterDashboard /> มาแสดงผลใน <main> และรันผ่าน lint + tsc 0 Error! */}
       {/* <SynchronizedClusterDashboard/> */}
       {/* True ✅ [Workshop 1.3.3 - Req 4]: นำ <ClusterPoolReducerManager /> มาแสดงผลใน <main> และรันผ่าน lint + tsc 0 Error! */}
-      <ClusterPoolReducerManager/>
+      {/* <ClusterPoolReducerManager/> */}
+      <ImmerReplicationTreeEditor/>
     </main>
   );
 }

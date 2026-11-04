@@ -92,11 +92,7 @@ export default function ClusterPoolReducerManager() {
   const [ipInput, setIpInput] = useState("");
   function handleSpawnWorker() {
     if (ipInput.trim().length <= 0) return;
-    // False ❌ [Req 3.2 - ส่งค่า ipInput ที่ยังไม่ได้ตัดช่องว่างหัวท้ายเข้า dispatch]:
-    // - สเปกกำหนดว่า: "ให้เรียก dispatch ส่งเหตุการณ์ 'spawn_worker' พร้อมส่งค่า ipInput ที่ตัดช่องว่างหัวท้ายแล้วเข้าไป"
-    // - ในบรรทัดที่ 93 ดิวใช้ `.trim()` ตอนเช็กความยาวแล้ว แต่พอบรรทัดที่ 98 กลับส่ง `clientIp: ipInput` (ตัวแปรดิบที่ยังไม่ได้ `.trim()`) เข้าไปแทน!
-    // - หากผู้ใช้เผลอพิมพ์เว้นวรรคนำหน้าหรือต่อท้าย เช่น `"  10.0.1.99  "` ค่าใน State จะมีช่องว่างติดไปด้วย!
-    // - วิธีแก้: เปลี่ยนเป็น `dispatch({ type: "spawn_worker", clientIp: ipInput.trim() });` (หรือเก็บ `const trimmedIp = ipInput.trim();` ไว้ใช้ทั้งตอนเช็กและตอนส่ง) ครับ!
+    // True ✅ [Req 3.2 - แก้ไขผ่าน 100%!]: ส่งค่า `ipInput.trim()` ที่ตัดช่องว่างหัวท้ายแล้วเข้า dispatch เรียบร้อย!
     dispatch({ type: "spawn_worker", clientIp: ipInput.trim() });
     setIpInput("");
   }
